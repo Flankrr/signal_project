@@ -7,35 +7,48 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class fileOutputStrategy implements OutputStrategy {
 
-    private String BaseDirectory;
 
-    public final ConcurrentHashMap<String, String> file_map = new ConcurrentHashMap<>();
 
-    public fileOutputStrategy(String baseDirectory) {
+// renamed class to UpperCamelCase
+public class FileOutputStrategy implements OutputStrategy {
 
-        this.BaseDirectory = baseDirectory;
+    // renamed variable to lowerCamelCase
+    private String baseDirectory;
+
+    // renamed constant to UPPER_SNAKE_CASE
+    public final ConcurrentHashMap<String, String> FILE_MAP = new ConcurrentHashMap<>();
+
+    // constructor starts with a lowercase
+    public FileOutputStrategy(String baseDirectory) {
+        // variable in constructor now matches field name and uses 'this' keyword
+        this.baseDirectory = baseDirectory;
     }
 
     @Override
     public void output(int patientId, long timestamp, String label, String data) {
         try {
-            // Create the directory
-            Files.createDirectories(Paths.get(BaseDirectory));
+            // opening brace should be at the end of the line
+            Files.createDirectories(Paths.get(baseDirectory));
         } catch (IOException e) {
             System.err.println("Error creating base directory: " + e.getMessage());
             return;
         }
-        // Set the FilePath variable
-        String FilePath = file_map.computeIfAbsent(label, k -> Paths.get(BaseDirectory, label + ".txt").toString());
+        // variable renamed to be in lowerCamelCase
+        // concatenation changed to use Paths.get 
+        String filePath = FILE_MAP.computeIfAbsent(label, k -> Paths.get(baseDirectory, label + ".txt").toString());
 
         // Write the data to the file
         try (PrintWriter out = new PrintWriter(
-                Files.newBufferedWriter(Paths.get(FilePath), StandardOpenOption.CREATE, StandardOpenOption.APPEND))) {
+                Files.newBufferedWriter(Paths.get(filePath), StandardOpenOption.CREATE, StandardOpenOption.APPEND))) {
+            // the print format should follow the correct procedure for string literals
             out.printf("Patient ID: %d, Timestamp: %d, Label: %s, Data: %s%n", patientId, timestamp, label, data);
         } catch (Exception e) {
-            System.err.println("Error writing to file " + FilePath + ": " + e.getMessage());
+            System.err.println("Error writing to file " + filePath + ": " + e.getMessage());
         }
     }
 }
+
+
+
+
