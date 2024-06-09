@@ -67,3 +67,23 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Project Members
 - Student ID: 6353925
 
+
+## UML Models
+The following UML diagrams were added to the project to represent the system's design:
+
+- **AlertGenerator**: Represents the alert generation system.
+- **AlertSequence**: Shows the sequence of events in the alert generation system.
+- **AlertState**: Depicts the state transitions for alerts.
+- **DataAccessSystem**: Describes the data access layer interactions.
+- **DataSystem**: Represents the data storage system.
+- **PatientSystem**: Illustrates the patient identification system.
+
+The diagrams are located in the `uml_models` directory.
+
+### UML Diagrams
+- [AlertGenerator](uml_models/AlertGenerator.png)
+- [AlertSequence](uml_models/AlertSequence.png)
+- [AlertState](uml_models/AlertState.png)
+- [DataAccessSystem](uml_models/DataAccessSystem.png)
+- [DataSystem](uml_models/DataSystem.png)
+- [PatientSystem](uml_models/PatientSystem.png)
